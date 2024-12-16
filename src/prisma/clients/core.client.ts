@@ -1,5 +1,5 @@
 import { PrismaClient } from "../generated/core"
 
-const DBCoreClient = new PrismaClient()
+const prisma = new PrismaClient()
 
-export default DBCoreClient
+export default prisma

@@ -7,8 +7,19 @@ datasource db {
   provider = "postgresql"
   url      = env("CORE_DATABASE_URL")
 }
+  
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String
+  password      String
+  refreshToken  String?  
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
 
-model users {
-  id         Int        @id @default(autoincrement())
-  username   String     @db.VarChar(50)
+enum Role {
+  USER
+  ADMIN
 }
