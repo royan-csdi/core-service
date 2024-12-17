@@ -1,0 +1,13 @@
+2024-12-17 16:34:10:3410 [32minfo[39m
+2024-12-17 16:35:14:3514 [32minfo[39m
+2024-12-17 16:36:25:3625 [32minfo[39m: [32m[WINSTON] Request - POST /auth/login[39m
+
+2024-12-17 16:36:38:3638 [32minfo[39m: [32m[WINSTON] Request - POST /auth/login[39m
+2024-12-17 16:36:54:3654 [32minfo[39m:
+ [32m[WINSTON] Request - POST /auth/login[39m
+2024-12-17 16:37:04:374 [32minfo[39m:
+[32m[WINSTON] Request - POST /auth/login[39m
+2024-12-17 16:37:56:3756 [32minfo[39m:
+[32m[WINSTON] Request - POST /auth/login[39m
+2024-12-17 16:38:13:3813 [31merror[39m:
+[31mExpected double-quoted property name in JSON at position 38 (line 4 column 1)[39m
