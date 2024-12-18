@@ -1,4 +1,5 @@
-import CAuth from "@/controllers/auth.controller"
-import CUser from "@/controllers/user.controller"
-
-export { CUser, CAuth }
+import SAuth from "./auth.service"
+import SUser from "./user.service"
+import SProject from "./project.service"
+import STask from "./task.service"
+export { SAuth, SUser, SProject, STask }
