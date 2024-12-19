@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express"
-import { env, loggerWinston } from "@/configs"
+import { connectProducer, env, loggerWinston } from "@/configs"
 import logger from "morgan"
 import router from "./routes"
 import { errorHandler } from "./middlewares"
@@ -17,6 +17,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 app.use("/", router)
+
+connectProducer().catch((error) => console.error(error))
 
 // schedule("*/5 * * * * *", () => {
 //   console.log("[Scheduler] - Running every 5 seconds...")

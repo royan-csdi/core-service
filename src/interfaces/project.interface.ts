@@ -3,8 +3,8 @@ export type ProjectStatus = "PLANNING" | "IN_PROGRESS" | "COMPLETED"
 export interface IProject {
   id?: string
   title: string
-  description?: string
-  status: ProjectStatus
+  description: string | null
+  status: string
   ownerId: string
   deadline: Date
   createdAt?: Date

@@ -1,11 +1,14 @@
 import { ITask } from "@/interfaces"
 import prisma from "@/prisma/clients/core.client"
 import { CustomError } from "@/utils"
+import { sendTaskNotification } from "./kafka.service"
 
 const createTask = async (data: Omit<ITask, "id">) => {
   const task = await prisma.task.create({
     data,
   })
+
+  await sendTaskNotification(task, "created")
   return task
 }
 

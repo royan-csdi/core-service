@@ -9,7 +9,7 @@ import taskRouter from "@/routes/task.routes"
 const router = Router()
 
 router.use("/auth", authRouter)
-router.use("/user", authMiddleware, userRouter)
+router.use("/users", authMiddleware, userRouter)
 router.use("/projects", authMiddleware, projectRouter)
 router.use("/tasks", authMiddleware, taskRouter)
 // router.use("/notifications", authMiddleware, notificationRouter)

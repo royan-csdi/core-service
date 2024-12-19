@@ -1,6 +1,7 @@
 import { IProject } from "@/interfaces"
 import { CustomError } from "@/utils"
 import prisma from "@/prisma/clients/core.client"
+import { sendProjectNotification } from "./kafka.service"
 
 const getAllProjects = async () => {
   const projects = await prisma.project.findMany({
@@ -53,7 +54,12 @@ const createProject = async (data: Omit<IProject, "id" | "createdAt" | "updatedA
         },
       },
     },
+    include: {
+      userProjects: true,
+    },
   })
+
+  await sendProjectNotification(project, "created")
 
   return project
 }
