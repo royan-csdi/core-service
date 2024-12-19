@@ -5,6 +5,7 @@ import prisma from "@/prisma/clients/core.client"
 import { CustomError, exclude, generateToken, verifyToken } from "@/utils"
 import bcrypt from "bcrypt"
 import { JwtPayload } from "jsonwebtoken"
+import cron from "node-cron"
 
 const login = async (data: Pick<IUser, "email" | "password">) => {
   const { email, password } = data
@@ -126,11 +127,30 @@ const logout = async (userId: string) => {
   return true
 }
 
+const job = cron.schedule(
+  "*/5 * * * * *",
+  () => {
+    console.log("[Scheduler] - Running every 5 seconds...")
+  },
+  {
+    scheduled: false,
+  },
+)
+
+const scheduler = (data: string) => {
+  if (Boolean(data) === true) {
+    return job.start()
+  } else {
+    return job.stop()
+  }
+}
+
 const SAuth = {
   login,
   register,
   refreshToken,
   logout,
+  scheduler,
 }
 
 export default SAuth

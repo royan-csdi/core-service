@@ -45,10 +45,24 @@ const refreshToken = async (req: Request, res: Response, next: NextFunction) => 
   }
 }
 
+const scheduler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { isStart } = req.body
+    if (isStart === undefined) {
+      throw new CustomError(400, "not value isStart")
+    }
+    SAuth.scheduler(isStart)
+    res.json(formatResponse(true, "success", {}))
+  } catch (error) {
+    next(error)
+  }
+}
+
 const CAuth = {
   login,
   register,
   refreshToken,
+  scheduler,
 }
 
 export default CAuth

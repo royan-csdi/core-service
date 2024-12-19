@@ -3,6 +3,7 @@ import { env, loggerWinston } from "@/configs"
 import logger from "morgan"
 import router from "./routes"
 import { errorHandler } from "./middlewares"
+// import { deleteCache, schedule } from "@/schedulers"
 
 const app = express()
 
@@ -16,6 +17,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 app.use("/", router)
+
+// schedule("*/5 * * * * *", () => {
+//   console.log("[Scheduler] - Running every 5 seconds...")
+// })
+// schedule("*/10 * * * * *", () => {
+//   console.log("[Scheduler] - Running every 10 seconds...")
+// })
+
+// schedule("*/30 * * * * *", deleteCache)
+
+//TODO
+// [POST] /scheduler body: start: false/true
 
 app.use(errorHandler)
 

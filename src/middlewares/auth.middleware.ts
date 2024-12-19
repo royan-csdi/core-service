@@ -2,7 +2,7 @@ import { env } from "@/configs"
 import redisClient from "@/configs/redis.config"
 import { CustomError, verifyToken } from "@/utils"
 import { Request, Response, NextFunction } from "express"
-import { JsonWebTokenError, JwtPayload, TokenExpiredError } from "jsonwebtoken"
+import { JwtPayload } from "jsonwebtoken"
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const bearerHeader = req.headers?.authorization
@@ -27,11 +27,6 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
     }
     next()
   } catch (err) {
-    if (err instanceof TokenExpiredError) {
-      return next(new CustomError(401, "Token has expired"))
-    } else if (err instanceof JsonWebTokenError) {
-      return next(new CustomError(401, "Invalid token"))
-    }
     next(err)
   }
 }
